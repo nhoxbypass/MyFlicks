@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
     <ImageView
-        android:id="@+id/item_image"
+        android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="@dimen/cover_height"
-        android:layout_margin="@dimen/padding_small"
+        android:padding="@dimen/padding_small"
         tools:src="@drawable/sample_cover"
        android:scaleType="fitXY"
         android:layout_weight="1"/>
@@ -23,7 +23,7 @@
         android:id="@+id/item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
+        android:textColor="@color/colorSecondaryText"
         android:textSize="@dimen/text_large"
         tools:text="This is Title"/>
         <TextView
