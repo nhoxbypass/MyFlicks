@@ -6,4 +6,7 @@
     <dimen name="text_large">24sp</dimen>
     <dimen name="text_small">16sp</dimen>
     <dimen name="padding_small">8dp</dimen>
+    <dimen name="popular_cover_height">160dp</dimen>
+    <dimen name="large_padding">40dp</dimen>
+    <dimen name="medium_padding">16dp</dimen>
 </resources>
