@@ -7,4 +7,6 @@
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#FAFAFA</color>
     <color name="colorDivider">#BDBDBD</color>
+    <color name="colorRatingBar">#FFC107</color>
+    <color name="colorRatingBarStroke">#FFB300</color>
 </resources>
