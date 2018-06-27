@@ -1,7 +1,6 @@
 package com.example.nhoxb.myflicks.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -10,16 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.nhoxb.myflicks.R;
-import com.example.nhoxb.myflicks.activity.DetailActivity;
 import com.example.nhoxb.myflicks.model.Movie;
 
 import java.util.List;
 
-import jp.wasabeef.glide.transformations.BlurTransformation;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 /**
@@ -109,16 +106,18 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
                 {
                     Glide.with(mContext)
                             .load(item.getPosterPath())
-                            .placeholder(R.drawable.placeholder_vertical)
-                            .bitmapTransform(new RoundedCornersTransformation(mContext,10,0))
+                            .apply(new RequestOptions()
+                                    .placeholder(R.drawable.placeholder_vertical)
+                                    .bitmapTransform(new RoundedCornersTransformation(10, 0, RoundedCornersTransformation.CornerType.ALL)))
                             .into(normalViewHolder.imageView);
                 }
                 else
                 {
                     Glide.with(mContext)
                             .load(item.getBackdropPath())
-                            .placeholder(R.drawable.placeholder_horizontal)
-                            .bitmapTransform(new RoundedCornersTransformation(mContext,10,0))
+                            .apply(new RequestOptions()
+                                    .placeholder(R.drawable.placeholder_horizontal)
+                                    .bitmapTransform(new RoundedCornersTransformation(10, 0, RoundedCornersTransformation.CornerType.ALL)))
                             .into(normalViewHolder.imageView);
                 }
 
@@ -144,8 +143,9 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
                 //Fill the data
                 Glide.with(mContext)
                         .load(item.getBackdropPath())
-                        .placeholder(R.drawable.placeholder_horizontal)
-                        .bitmapTransform(new RoundedCornersTransformation(mContext,10,0))
+                        .apply(new RequestOptions()
+                                .placeholder(R.drawable.placeholder_horizontal)
+                                .bitmapTransform(new RoundedCornersTransformation(10, 0, RoundedCornersTransformation.CornerType.ALL)))
                         .into(popularViewHolder.imageView);
                 break;
         }
