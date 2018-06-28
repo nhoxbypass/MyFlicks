@@ -1,43 +1,36 @@
-package com.example.nhoxb.myflicks.activity;
+package com.example.nhoxb.myflicks.ui.detail;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.content.res.ResourcesCompat;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nhoxb.myflicks.R;
+import com.example.nhoxb.myflicks.data.remote.model.Movie;
 import com.example.nhoxb.myflicks.databinding.ActivityDetailBinding;
-import com.example.nhoxb.myflicks.model.Movie;
+import com.example.nhoxb.myflicks.ui.main.MainActivity;
 import com.example.nhoxb.myflicks.utils.Constant;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
-import com.google.android.youtube.player.YouTubeThumbnailLoader;
-import com.google.android.youtube.player.YouTubeThumbnailView;
 
 public class DetailActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
-
     private static final int RECOVERY_DIALOG_REQUEST = 1;
-
-    YouTubePlayer player;
-    YouTubePlayerView playerView;
-    RatingBar ratingBar;
 
     private ActivityDetailBinding binding;
 
-    TextView tvTitle, tvOverview, tvReleaseDate, tvAverageRate;
+    private TextView tvTitle, tvOverview, tvReleaseDate, tvAverageRate;
+    private RatingBar ratingBar;
+    private YouTubePlayerView playerView;
 
-    Movie movie;
-    String videoId;
+    private Movie movie;
+    private String videoId;
 
     //Binding
 
@@ -56,20 +49,22 @@ public class DetailActivity extends YouTubeBaseActivity implements YouTubePlayer
         tvAverageRate = binding.averageRate;
         ratingBar = binding.ratingBar;
 
-        playerView.initialize(Constant.YOUTUBE_ANDROID_KEY,this);
+        playerView.initialize(Constant.YOUTUBE_ANDROID_KEY, this);
 
         Intent intent = getIntent();
         videoId = intent.getStringExtra(MainActivity.VIDEO_ID_KEY);
         movie = (Movie) intent.getExtras().get(MainActivity.SELECTED_ITEM_KEY);
 
         //Set
-        tvTitle.setText(movie.getTitle());
-        tvReleaseDate.setText("Release date: " + movie.getReleasePath());
-        tvOverview.setText(movie.getDescription());
-        tvAverageRate.setText(movie.getAverageVote() + " (" + movie.getVoteCount() + ")");
-        ratingBar.setMax(10);
-        ratingBar.setNumStars(5);
-        ratingBar.setRating(movie.getAverageVote());
+        if (movie != null) {
+            tvTitle.setText(movie.getTitle());
+            tvReleaseDate.setText("Release date: " + movie.getReleasePath());
+            tvOverview.setText(movie.getDescription());
+            tvAverageRate.setText(movie.getAverageVote() + " (" + movie.getVoteCount() + ")");
+            ratingBar.setMax(10);
+            ratingBar.setNumStars(5);
+            ratingBar.setRating(movie.getAverageVote());
+        }
 
         //Material design style
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
@@ -80,11 +75,8 @@ public class DetailActivity extends YouTubeBaseActivity implements YouTubePlayer
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-        if(!b)
-        {
-            player = youTubePlayer;
-
-            player.cueVideo(videoId);
+        if (!b) {
+            youTubePlayer.cueVideo(videoId);
         }
     }
 

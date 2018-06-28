@@ -1,6 +1,6 @@
-package com.example.nhoxb.myflicks.model;
+package com.example.nhoxb.myflicks.data.remote.model;
 
-import com.example.nhoxb.myflicks.utils.Constant;
+import com.example.nhoxb.myflicks.data.remote.ApiEndPoint;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -45,11 +45,11 @@ public class Movie implements Serializable {
     }
 
     public String getBackdropPath() {
-        return Constant.IMG_BASE_URL + backdropPath;
+        return ApiEndPoint.IMG_BASE_URL + backdropPath;
     }
 
     public String getPosterPath() {
-        return Constant.IMG_BASE_URL + posterPath;
+        return ApiEndPoint.IMG_BASE_URL + posterPath;
     }
 
     public String getDescription() {
@@ -59,7 +59,6 @@ public class Movie implements Serializable {
     public String getTitle() {
         return title;
     }
-
 
 
     public float getVoteCount() {

@@ -1,9 +1,7 @@
-package com.example.nhoxb.myflicks.api;
+package com.example.nhoxb.myflicks.data.remote;
 
-import com.example.nhoxb.myflicks.model.ListMovie;
-import com.example.nhoxb.myflicks.model.YoutubeTrailer;
-
-import java.util.List;
+import com.example.nhoxb.myflicks.data.remote.model.ListMovie;
+import com.example.nhoxb.myflicks.data.remote.model.YoutubeTrailer;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
